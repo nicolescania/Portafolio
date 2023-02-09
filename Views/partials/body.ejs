@@ -1,3 +1,147 @@
+<div  id="about" class="masthead bg-white text-primary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5 rounded-circle" src="/Content/profile.jpg" alt="..." />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">Hi!, I'm Nicole Peralta</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">I am a full stack developer based in Toronto, Canada.  </p>
+    </div>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-xl bg-primary btn-outline-light" href="https://docs.google.com/document/d/1O-vYBDAQoe9f55-0zfT8wekv_WlthCo6/edit?usp=sharing&ouid=108538391414218355609&rtpof=true&sd=true">
+            <i class="fas fa-download me-2"></i>
+            Resume
+        </a>
+    </div>
+</div>
+
+<!--service page-->
+
+
+<div id="services" class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-white">Services</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="col-lg-4 ms-auto"><p class="lead">I am a freelancer which I can work as a front end and full stack developer.</p></div>
+            <div class="col-lg-4 me-auto"><p class="lead">Techonoligies I use are HTML, CSS, Javascript, Bootstrap, RESfull APIs, Express, Nodejs ect</p></div>
+        </div>
+   
+    </div>
+</div>
+
+
+<section class="page-section portfolio" id="projects">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-5">Portfolio</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card">
+        <img src="/Content/BMR.jpeg" class="mx-auto d-block w-50 mt-2" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">BMR Calculator</h5>
+          <p class="card-text">Calculate the number of daily calories your body needs. Utilizes the BMR method. Technologies: HTML, CSS, Javascript (including validations).</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <img src="/Content/ps5.jpeg" class="mx-auto d-block w-75 mt-2 mb-3 pb-3" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-center">Top Games</h5>
+          <p class="card-text mb-5">Website with HTML and css.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="card">
+          <img src="/Content/form.jpeg" class="mx-auto d-block w-50 mt-2" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center mb-5">Form</h5>
+            <p class="card-text mb-5">HTML form.</p>
+          </div>
+        </div>
+    </div>
+    
+  </div>
+    </div>
+    </section>
+    
 
 
 
+    <!-- Contact Section-->
+    <section class="page-section bg-primary" id="contact">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Contact Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+               
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <!-- Name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                            <label for="name">Full name</label>
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        </div>
+                        <!-- Email address input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                            <label for="email">Email address</label>
+                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        </div>
+                        <!-- Phone number input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                            <label for="phone">Phone number</label>
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                        </div>
+                        <!-- Message input-->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                            <label for="message">Message</label>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                        </div>
+                   
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Form submission successful!</div>
+                                To activate this form, sign up at
+                                <br />
+                                
+                            </div>
+                        </div>
+                        <!-- Submit error message-->
+                   
+                        <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                        <!-- Submit Button-->
+                        <button class="btn bg-white btn-xl disabled" id="submitButton" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
