@@ -1,0 +1,27 @@
+{
+    "movies":
+    [
+        {
+            "Name": "Titanic",
+            "Year": "1995",
+            "Director": "James Cameron",
+            "Rating": "5 Starts"
+        },
+
+        {
+            "Name": "Spider-man: No Way Home",
+            "Year": "2021",
+            "Director": "Jon Watts",
+            "Rating": "4.5 Starts"
+        },
+
+        {
+            "Name": "Everything Everywhere All at Once",
+            "Year": "2021",
+            "Director": "Dan Kwan",
+            "Rating": "4 Starts"
+        }
+   
+   
+    ]
+}
