@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include('partials/head.ejs'); %>
+  <%- include('./Components/head.ejs'); %>
 </head>
 
-<head>
-  <%- include('partials/header.ejs'); %>
-</head>
 
 <body>
 
-  <%- include('partials/body.ejs'); %>
+  <header>
+    <%- include('./Components/header.ejs'); %>
+  </header>
 
 
-<%- include('Content/movie-list.ejs'); %>
 
+   <main>
+    <%- include('./content/' + page + '.ejs'); %>
+  </main>
+
+ 
 </body>
 
 
@@ -22,7 +25,7 @@
 
 
 <footer>
-  <%- include('partials/footer.ejs'); %>
+  <%- include('Components/footer.ejs'); %>
 </footer>
 
 </body>
