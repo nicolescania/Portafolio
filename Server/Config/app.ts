@@ -1,3 +1,5 @@
+
+
 import createError   from 'http-errors';
 import express, { NextFunction }  from 'express';
 import path, { dirname }  from 'path';
@@ -10,7 +12,7 @@ import mongoose  from 'mongoose';
 
 // import the router data
 import indexRouter  from '../Routes/index';
-
+import movieListRouter from '../Routes/movie-list';
 
 const app = express();
 
@@ -43,6 +45,7 @@ app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use('/', indexRouter);
+app.use('/', movieListRouter);
 
 
 // catch 404 and forward to error handler

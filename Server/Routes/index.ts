@@ -1,10 +1,9 @@
 
-
 import express from 'express';
 const router = express.Router();
 // import controller module
 
-import {DisplayHomePage, DisplayMovieList} from "../Controllers/index";
+import {DisplayHomePage} from "../Controllers/index";
 
 
 
@@ -17,7 +16,7 @@ router.get('/projects', DisplayprojectPage);
 router.get('/services', DisplayservicePage);
 router.get('/contact', DisplaycontactPage);
 */
-router.get('/movie-list', DisplayMovieList);
+
 
 
 export default router;
@@ -26,5 +25,4 @@ export default router;
 
 //Temporary
 
-//router.get('/movie-list', DisplayMovieList);
-
+//router.get('/movie-list', DisplayMovieList)
