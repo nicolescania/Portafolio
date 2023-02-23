@@ -20,9 +20,9 @@ Updated:
 }
 },
 {
-    collection: "movies"
+    collection: "users"
 });
 
 
-const Model = mongoose.model("Movies", UserSchema);
+const Model = mongoose.model("User", UserSchema);
 export default Model;

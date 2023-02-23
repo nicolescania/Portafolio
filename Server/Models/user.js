@@ -18,8 +18,8 @@ const UserSchema = new Schema({
         default: Date.now()
     }
 }, {
-    collection: "movies"
+    collection: "users"
 });
-const Model = mongoose_1.default.model("Movies", UserSchema);
+const Model = mongoose_1.default.model("User", UserSchema);
 exports.default = Model;
 //# sourceMappingURL=user.js.map
