@@ -1,21 +1,31 @@
 
 import express from 'express';
 const router = express.Router();
+
 // import controller module
 
-import {DisplayHomePage} from "../Controllers/auth";
+import {DisplayLoginPage, DisplayRegisterPage, ProcessLoginPage, ProcessRegisterPage, ProcessLogoutPage} from "../Controllers/auth";
 
 
 
-/* GET home page. */
-router.get('/', DisplayHomePage);
-router.get('/home', DisplayHomePage);
-/*
-router.get('/about', DisplayAboutPage);
-router.get('/projects', DisplayprojectPage);
-router.get('/services', DisplayservicePage);
-router.get('/contact', DisplaycontactPage);
-*/
+//Display Login page
+router.get('/login', DisplayLoginPage);
+
+//Display Register page
+router.get('/register', DisplayRegisterPage);
+
+
+
+// Process Login Page
+router.post('/login', ProcessLoginPage);
+
+// Process Register Page
+router.post('/register', ProcessRegisterPage);
+
+// Process Logout Page
+router.get('/logout', ProcessLogoutPage);
+
+
 
 
 
@@ -23,6 +33,3 @@ export default router;
 
 
 
-//Temporary
-
-//router.get('/movie-list', DisplayMovieList)
