@@ -13,12 +13,12 @@ import User from '../Models/user'
 
 export function DisplayLoginPage(req: Express.Request, res:express.Response, next:express.NextFunction)
 {
-        res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), distplayName: ''});
+        res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: ''});
 }
 
 export function DisplayRegisterPage(req: Express.Request, res:express.Response, next:express.NextFunction)
 {
-    res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), distplayName: ''});
+    res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: ''});
 }
 
 //Processing Functions
