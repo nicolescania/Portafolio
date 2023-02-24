@@ -6,23 +6,42 @@ import path, { dirname }  from 'path';
 import cookieParser  from 'cookie-parser';
 import logger  from 'morgan';
 
-// step 1 import db package
+//  import db package
 import mongoose  from 'mongoose';
 
+// import modules
+import session from 'express-session';
+import passport from 'passport';
+import passportLocal from 'passport-local';
+import flash from 'connect-flash';
+
+
+// modules for JWT support
+import cors from 'cors';
+
+//define our auth objects
+let localStrategy = passportLocal.Strategy;
+
+// Import the user model
+import User from '../Models/user'
 
 // import the router data
 import indexRouter  from '../Routes/index';
 import movieListRouter from '../Routes/movie-list';
+import authRouter from '../Routes/auth';
+
+
+
 
 const app = express();
 
-// Step 2 DB configuration
+//  DB configuration
 import *as DBconfig from './db';
 mongoose.connect(DBconfig.LocalURI);
 
 const db = mongoose.connection; //alias for the mongoose connection
 
-// step 3 Listen for connections or Errors
+// Listen for connections or Errors
 db.on("open", function()
 {
   console.log(`Connected to MongoDB at: ${DBconfig.HostName} `);
@@ -44,9 +63,35 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+app.use(cors()); //add CORS (cross-origin resource sharing) to the config
+
+// For auth - setup express session
+
+app.use(session({
+  secret: DBconfig.Secret,
+  saveUninitialized: false,
+  resave: false
+}));
+
+// Setup Flash
+app.use(flash());
+
+// Initialize passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Implement the auth Strategy
+passport.use(User.createStrategy());
+
+// Setup serialization and deserialization (encoding and decoding)
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
 app.use('/', indexRouter);
 app.use('/', movieListRouter);
-
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

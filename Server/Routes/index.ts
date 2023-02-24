@@ -10,6 +10,7 @@ import {DisplayHomePage} from "../Controllers/index";
 /* GET home page. */
 router.get('/', DisplayHomePage);
 router.get('/home', DisplayHomePage);
+router.get('/index', DisplayHomePage);
 /*
 router.get('/about', DisplayAboutPage);
 router.get('/projects', DisplayprojectPage);
