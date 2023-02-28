@@ -2,14 +2,14 @@
 
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase h6 fixed-top " id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top"> <img src="/Content/NP.png" class=" rounded-circle masthead-avatar  h-25 w-25" alt=""></a>
+        <a class="navbar-brand" href="/home"> <img src="/Content/NP.png" class=" rounded-circle masthead-avatar  h-25 w-25" alt=""></a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 "><a class="nav-link rounded <%= (page == 'home') ? 'active' : ''; %>" href="#portfolio"> Home Page</a></li>
+                <li class="nav-item mx-0 "><a class="nav-link rounded <%= (page == 'home') ? 'active' : ''; %>" href="/home"> Home Page</a></li>
                 <li class="nav-item mx-0 "><a class="nav-link rounded " href="#about"> About me</a></li>
                 <li class="nav-item mx-0 "><a class="nav-link rounded" href="#projects"> Projects page</a></li>
                 <li class="nav-item mx-0 "><a class="nav-link rounded" href="#services"> Services page</a></li>
@@ -18,13 +18,15 @@
 
                 <% if(displayName) { %>
 
+                    <li class="nav-item mx-0 "><a class="nav-link rounded <%= (page == 'movie-list') ? 'active' : ''; %>" href="/movie-list">Movies</a></li>
                     <li class="nav-item mx-0 "><a class="nav-link rounded" href="/logout">Logout</a></li>
+                 <% } else { %>
 
-                    <% } else { %>
+                     <li class="nav-item mx-0 "><a class="nav-link rounded <%= (page == 'login') ? 'active' : ''; %>" href="/login"> Login</a></li>
 
-                    <li class="nav-item mx-0 "><a class="nav-link rounded" href="/login"> Login</a></li>
+                  
          
-                    <% } %>
+                 <% } %>
   
                 
 
