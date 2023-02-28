@@ -25,6 +25,38 @@ export function DisplayRegisterPage(req: Express.Request, res:express.Response, 
 
 export function ProcessLoginPage(req: Express.Request, res:express.Response, next:express.NextFunction)
 {
+    passport.authenticate('local', function(err, user, info)
+    
+    {
+        // server errors
+        if(err)
+        {
+            console.error(err)
+        }
+
+        // login errors
+        if(!user)
+        {
+            req.flash('loginMessage', 'Authentication Error!');
+            return res.redirect('/login');
+        }
+
+        // no problems - we have a good username and password
+        req.logIn(user, function(err)
+       
+        {
+            if(err)
+            {
+                console.error(err);
+                res.end(err);
+            }
+
+            return res.redirect('/movie-list');
+        });
+    }) (req, res, next)
+
+
+
 
 }
 

@@ -16,7 +16,7 @@ export function UserDisplayName(req: express.Request): String
 export  function AuthGuard(req: express.Request, res: express.Response, next: express.NextFunction)
 
 {
-    if (!req.isAuthenticated)
+    if (!req.isAuthenticated())
     {
         return res.redirect('/login');
     }
