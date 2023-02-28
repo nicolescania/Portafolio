@@ -1,11 +1,11 @@
 import express from 'express';
 
-// convenience function to return the DisplayName of the user
-export function UserDisplayName(req: express.Request): String 
+// convenience function to return the DisplayName of the User
+export function UserDisplayName(req: express.Request): string
 {
-    if (req.user)
+    if(req.user)
     {
-        let user = req.user as UserDocument
+        let user = req.user as UserDocument;
         return user.DisplayName.toString();
     }
     return '';
