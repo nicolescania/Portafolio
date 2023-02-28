@@ -1,13 +1,12 @@
 import express from 'express';
 
-// need passport functionality
+// require passport functionality
 import passport from 'passport';
 
+// require User Model
+import User from '../Models/user';
 
-
-// Need to include the user model for authentication functions
-
-import User from '../Models/user'
+import { UserDisplayName } from '../../Util';
 
 // Display functions
 
@@ -60,13 +59,60 @@ export function ProcessLoginPage(req: Express.Request, res:express.Response, nex
 
 }
 
-export function ProcessRegisterPage(req: Express.Request, res:express.Response, next:express.NextFunction)
+export function ProcessRegisterPage(req: express.Request, res:express.Response, next:express.NextFunction)
 {
+
+    // instantiate a new user object
+
+    let newUser = new User
+    ({
+        username: req.body.username,
+        EmailAddress: req.body.emailAddress,
+        DisplayName: req.body.firstName + " " + req.body.lastName
+
+    });
+
+
+    User.register(newUser, req.body.password, function(err)
+    {
+        if (err)
+        {
+            if (err.name == "UserExistsError")
+            {
+                console.log('Error: User Already Exist!');
+                req.flash('registerMessage', 'Registration Error');
+            }
+            else
+            {
+                console.error(err.name);
+                req.flash('registerMessage', 'Server Error');
+            }
+            
+            return res.redirect('/register');
+        }
+
+        // everything is okey- user has been register
+        // automatically login the user
+
+        return passport.authenticate('local') (req, res, function()
+        {
+
+            return res.redirect('/movie-list');
+        })
+    })
+
 
 }
 export function ProcessLogoutPage(req: Express.Request, res:express.Response, next:express.NextFunction)
 {
-  
+    req.logout( (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/login');
+        }
+    });
+ 
 }
 
 //Temporary
