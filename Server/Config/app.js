@@ -44,7 +44,7 @@ const movie_list_1 = __importDefault(require("../Routes/movie-list"));
 const auth_1 = __importDefault(require("../Routes/auth"));
 const app = (0, express_1.default)();
 const DBconfig = __importStar(require("./db"));
-mongoose_1.default.connect(DBconfig.LocalURI);
+mongoose_1.default.connect(DBconfig.RemoteURI);
 const db = mongoose_1.default.connection;
 db.on("open", function () {
     console.log(`Connected to MongoDB at: ${DBconfig.HostName} `);
