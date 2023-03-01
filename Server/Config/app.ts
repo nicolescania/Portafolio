@@ -1,50 +1,44 @@
+import createError from 'http-errors';
+import express, { NextFunction } from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
+// import the database connector / adapter package
+import mongoose from 'mongoose';
 
-import createError   from 'http-errors';
-import express, { NextFunction }  from 'express';
-import path, { dirname }  from 'path';
-import cookieParser  from 'cookie-parser';
-import logger  from 'morgan';
-
-//  import db package
-import mongoose  from 'mongoose';
-
-// import modules
+// Step 1 for auth - import modules
 import session from 'express-session';
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import flash from 'connect-flash';
 
-
 // modules for JWT support
-import cors from 'cors';
+import cors from 'cors'; // Cross-Origin Resource Sharing
 
-//define our auth objects
-let localStrategy = passportLocal.Strategy;
+// Step 2 for auth - define our auth objects
+let localStrategy = passportLocal.Strategy; // alias
 
-// Import the user model
-import User from '../Models/user'
+// Step 3 for auth - import the User Model
+import User from '../Models/user';
 
-// import the router data
-import indexRouter  from '../Routes/index';
+// import router data from the router module(s)
+import indexRouter from '../Routes/index'; 
 import movieListRouter from '../Routes/movie-list';
 import authRouter from '../Routes/auth';
 
-
-
-
+// create the application object - which is of type express
 const app = express();
 
-//  DB configuration
-import *as DBconfig from './db';
-mongoose.connect(DBconfig.RemoteURI);
+// Complete the DB Connection Configuration
+import * as DBConfig from './db';
+mongoose.connect(DBConfig.RemoteURI || DBConfig.LocalURI);
+const db = mongoose.connection; // alias for the mongoose connection
 
-const db = mongoose.connection; //alias for the mongoose connection
-
-// Listen for connections or Errors
+// Listen for Connections or Errors
 db.on("open", function()
 {
-  console.log(`Connected to MongoDB at: ${DBconfig.HostName} `);
+  console.log(`Connected to MongoDB at: ${(DBConfig.RemoteURI) ? DBConfig.HostName : "localhost"}`);
 });
 
 db.on("error", function()
@@ -63,43 +57,43 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
-app.use(cors()); //add CORS (cross-origin resource sharing) to the config
+app.use(cors()); // adds CORS middleware
 
-// For auth - setup express session
-
+// Step 4 for auth - setup express session
 app.use(session({
-  secret: DBconfig.Secret,
+  secret: DBConfig.Secret,
   saveUninitialized: false,
   resave: false
 }));
 
-// Setup Flash
+// Step 5 for auth - setup Connect Flash
 app.use(flash());
 
-// Initialize passport and session
+// Step 6 for auth - initialize passport and session
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Implement the auth Strategy
+// Step 7 for auth - implement the auth strategy
 passport.use(User.createStrategy());
 
-// Setup serialization and deserialization (encoding and decoding)
+// Step 8 for auth - setup User serialization and deserialization (encoding / decoding)
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
+// add routing 
 app.use('/', indexRouter);
 app.use('/', movieListRouter);
 app.use('/', authRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(req, res, next) 
+{
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: createError.HttpError, req: express.Request, res: express.Response, next: NextFunction) {
+app.use(function(err: createError.HttpError, req: express.Request, res: express.Response, next: NextFunction) 
+{
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

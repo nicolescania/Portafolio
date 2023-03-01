@@ -43,11 +43,11 @@ const index_1 = __importDefault(require("../Routes/index"));
 const movie_list_1 = __importDefault(require("../Routes/movie-list"));
 const auth_1 = __importDefault(require("../Routes/auth"));
 const app = (0, express_1.default)();
-const DBconfig = __importStar(require("./db"));
-mongoose_1.default.connect(DBconfig.RemoteURI);
+const DBConfig = __importStar(require("./db"));
+mongoose_1.default.connect(DBConfig.RemoteURI || DBConfig.LocalURI);
 const db = mongoose_1.default.connection;
 db.on("open", function () {
-    console.log(`Connected to MongoDB at: ${DBconfig.HostName} `);
+    console.log(`Connected to MongoDB at: ${(DBConfig.RemoteURI) ? DBConfig.HostName : "localhost"}`);
 });
 db.on("error", function () {
     console.error(`Connection Error`);
@@ -62,7 +62,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, '../../Client'))
 app.use(express_1.default.static(path_1.default.join(__dirname, '../../node_modules')));
 app.use((0, cors_1.default)());
 app.use((0, express_session_1.default)({
-    secret: DBconfig.Secret,
+    secret: DBConfig.Secret,
     saveUninitialized: false,
     resave: false
 }));
