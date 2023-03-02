@@ -6,7 +6,7 @@ import passport from 'passport';
 // require User Model
 import User from '../Models/user';
 
-import { UserDisplayName } from '../../Util';
+import { UserDisplayName } from '../Util';
 
 /* Display Functions */
 export function DisplayLoginPage(req: express.Request, res: express.Response, next: express.NextFunction) 
