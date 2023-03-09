@@ -66,6 +66,8 @@ app.use(session({
   resave: false
 }));
 
+
+
 // Step 5 for auth - setup Connect Flash
 app.use(flash());
 
