@@ -21,7 +21,7 @@ Updated:
 }
 },
 {
-    collection: "users"
+    collection: "user"
 });
 
 declare global
